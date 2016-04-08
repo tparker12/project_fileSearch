@@ -24,11 +24,11 @@ def copyFile(src, dest):
     except IOError as e:
         print('Error: %s' % e.strerror)
 
-# method to call a gui to select a directory
+# method to create a gui to select a directory
 # found at http://stackoverflow.com/questions/25282883/how-can-i-use-the-output-from-tkfiledialog-askdirectory-to-fill-a-tkinter-entry
 def askdirectory():
     root = Tkinter.Tk()
-    # withdraw() allows the window to dissapear 
+    # withdraw() allows the window to dissapear, at first I would select a directory then it would turn to a blank window that couldnt be exited.
     # found at https://www.daniweb.com/programming/software-development/threads/210657/open-directory-dialog-box
     root.withdraw()
     dirname = tkFileDialog.askdirectory()
@@ -39,7 +39,6 @@ print "It also allows you to copy the files after collecting them into a folder 
 
 print "Please enter a starting directory.."
 directory = askdirectory()
-#directory = raw_input()
 
 print 'For image files then press 1'
 print 'For Word files then press 2'
@@ -89,13 +88,18 @@ for root, dirnames, filenames in os.walk(directory):
                 matches.append(os.path.join(root, filename))
         else:
             print 'You did not press a specified number.'
-            sys.exit()
+            #sys.exit()
+            quit()
 # if the list is empty say so..
 if len(matches) == 0:
     print len(matches)
     print 'There were no files of the specified type within the directory you gave.'
+    quit()
 else:
-    print matches
+    for item in matches:
+        #print item
+        # found at http://stackoverflow.com/questions/3925096/how-to-get-only-the-last-part-of-a-path-in-python
+        print os.path.basename(item)
     print "Would you like to copy these to a new folder? Y or N?"
     answer = raw_input()
     if answer == 'y' or 'Y':
@@ -108,7 +112,9 @@ else:
         for x in matches:
             copyFile(x, direc)
         print "Congrats, you moved all the files into %s" % direc
-        sys.exit()
+        #sys.exit()
+        quit()
     else:
         print "You have chosen not to move the files to a new folder, goodbye."
-        sys.exit()
+        quit()
+        #sys.exit()
