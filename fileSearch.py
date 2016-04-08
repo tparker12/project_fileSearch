@@ -12,9 +12,7 @@ import shutil
 #imports for dialogue boxes
 import Tkinter
 import tkFileDialog
-import math
 
-#this copy has changes.
 # method for copying a file with shutil
 def copyFile(src, dest):
     try:
