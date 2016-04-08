@@ -34,8 +34,6 @@ def askdirectory():
     dirname = tkFileDialog.askdirectory()
     return dirname
 
-# /home/tanner/Desktop/firstFolder
-
 print "This script is meant for scrubbing files of a specified type and listing them."
 print "It also allows you to copy the files after collecting them into a folder of your choice."
 
@@ -103,10 +101,6 @@ else:
     if answer == 'y' or 'Y':
         print 'Specify directory path to move files into.'
         direc = askdirectory()
-        #print 'Note: The folder you specify will be created on the Desktop.'
-        #newDir = raw_input()
-        # concatenates the specified folder with the path to the desktop
-        #newDir1 = desktop + newDir
         # checks that the directory doesn't already exist, if not; makes it.
         if not os.path.exists(direc):
             os.makedirs(direc)
